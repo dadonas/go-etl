@@ -1,0 +1,148 @@
+[
+    {
+        "id": "9db069e2.694be8",
+        "type": "inject",
+        "z": "d171ca0b.c50858",
+        "name": "",
+        "topic": "",
+        "payload": "Start",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 70,
+        "y": 60,
+        "wires": [
+            [
+                "723335b3.70a7dc",
+                "7a11172f.96f5a8"
+            ]
+        ]
+    },
+    {
+        "id": "723335b3.70a7dc",
+        "type": "http request",
+        "z": "d171ca0b.c50858",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "url": "localhost:8080/source/records",
+        "tls": "",
+        "x": 180,
+        "y": 180,
+        "wires": [
+            [
+                "2595e20d.33efae"
+            ]
+        ]
+    },
+    {
+        "id": "2595e20d.33efae",
+        "type": "split",
+        "z": "d171ca0b.c50858",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 360,
+        "y": 280,
+        "wires": [
+            [
+                "b77addd3.4263f"
+            ]
+        ]
+    },
+    {
+        "id": "476a59b1.7196c8",
+        "type": "http request",
+        "z": "d171ca0b.c50858",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "url": "localhost:8081/target/records",
+        "tls": "",
+        "x": 610,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b77addd3.4263f",
+        "type": "delay",
+        "z": "d171ca0b.c50858",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1000",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 480,
+        "y": 360,
+        "wires": [
+            [
+                "476a59b1.7196c8",
+                "2ed12362.92636c"
+            ]
+        ]
+    },
+    {
+        "id": "2ed12362.92636c",
+        "type": "trigger",
+        "z": "d171ca0b.c50858",
+        "op1": "",
+        "op2": "Done",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "1",
+        "extend": true,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "name": "",
+        "x": 480,
+        "y": 440,
+        "wires": [
+            [
+                "936292cc.61d6"
+            ]
+        ]
+    },
+    {
+        "id": "7a11172f.96f5a8",
+        "type": "debug",
+        "z": "d171ca0b.c50858",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 290,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "936292cc.61d6",
+        "type": "debug",
+        "z": "d171ca0b.c50858",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 650,
+        "y": 440,
+        "wires": []
+    }
+]
